@@ -1,0 +1,70 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+
+body {
+    background: #FFF;
+    font: normal normal 1.3em "Patrick Hand SC", cursive;
+}
+
+.container {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    padding: 20px;
+
+    border-radius: 20px;
+    width: 400px;
+
+    background-color: #279AF1;
+
+    box-shadow: 2px 2px 16px #00000045;
+}
+
+.container_camp {
+    width: 100%;
+    background-color: #A9DEF9;
+    margin: auto;
+    border-radius: 10px;
+    padding: 10px 0px;
+}
+
+.container_camp input {
+    width: 95%;
+    height: 30px;
+    margin: 10px;
+    border-radius: 10px;
+
+    font-size: 90%;
+    text-indent: 10px;
+    color: #003459;
+}
+
+.container_camp label {
+    margin-left: 10px;
+}
+
+#submit {
+    border-radius: 20px;
+    width: 100%;
+    height: 50px;
+    margin-top: 20px;
+
+    font: normal bold 1.5em "Patrick Hand SC", cursive;
+    background-color: #6ecdfd;
+
+    color: #00171F;
+}
+
+#submit:hover {
+    color: #00171F;
+    background-color: #b0dbf1;
+    transition: 0.3s;
+}
