@@ -10,7 +10,7 @@ db = db.DataBase()
 
 @app.route("/")
 def index():
-    return redirect("/cadastro")
+    return redirect("/singin")
 
 @app.route("/cadastro", methods=["POST", "GET"])
 def cadastro():
@@ -38,6 +38,27 @@ def cadastro():
         return redirect("/certo")
     
     return render_template("cadastro.html")
+
+
+@app.route("/singin", methods=["POST", "GET"])
+def singin():
+    if request.method == "POST":
+        db.init()
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        rows = db.resgatar_usuario(email, password)
+        print(rows)
+
+        db.close()
+
+        if len(rows) == 0:
+            return redirect("/fail")
+
+        return redirect("/certo")
+
+    return render_template("login.html")
+
 
 @app.route("/certo")
 def certo():

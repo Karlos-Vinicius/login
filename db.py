@@ -1,13 +1,13 @@
 import sqlite3
 
 class DataBase():
-    _instance = None
+    data_base = None
 
     def __new__(cls):
-        if not cls._instance:
-            cls._instance = object.__new__(cls)
+        if not cls.data_base:
+            cls.data_base = object.__new__(cls)
 
-        return cls._instance
+        return cls.data_base
 
 
     def init(self):
@@ -23,8 +23,10 @@ class DataBase():
         self.con.commit()
 
 
-    def resgatar_usuario(self):
-        return self.cur.execute("SELECT * FROM cadastro;").fetchall()
+    def resgatar_usuario(self, email, password):
+        self.cur.execute("SELECT * FROM cadastros WHERE email == ? AND password == ?;", 
+                                (email, password))
+        return self.cur.fetchall()
     
 
     def close(self):

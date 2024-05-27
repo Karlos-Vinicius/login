@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS cadastro (
+CREATE TABLE IF NOT EXISTS cadastros (
     id       INTEGER PRIMARY KEY AUTOINCREMENT
                      NOT NULL,
     name     TEXT,
