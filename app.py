@@ -1,11 +1,11 @@
 from flask import render_template, redirect, Flask, request
 
 
-from db import DataBase
+from . import db
 
 
 app = Flask(__name__)
-db = DataBase()
+db = db.DataBase()
 
 
 @app.route("/")
@@ -15,6 +15,7 @@ def index():
 @app.route("/cadastro", methods=["POST", "GET"])
 def cadastro():
     if request.method == "POST":
+        db.init()
         name = request.form.get("name")
         email = request.form.get("email")
         password = request.form.get("password")
@@ -31,6 +32,8 @@ def cadastro():
             return redirect("/fail")
         
         db.cadastrar_pessoa(name=name, email=email, password=password)
+
+        db.close()
 
         return redirect("/certo")
     

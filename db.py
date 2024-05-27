@@ -1,29 +1,35 @@
 import sqlite3
 
 class DataBase():
-    def __init__(self):
-        self.init()
+    _instance = None
+
+    def __new__(cls):
+        if not cls._instance:
+            cls._instance = object.__new__(cls)
+
+        return cls._instance
+
 
     def init(self):
         self.con = sqlite3.connect("clients.db")
         self.cur = self.con.cursor()
 
     def cadastrar_pessoa(self, name, email, password):
-        if bool(name) == bool(email) == bool(password):
-            name = name.capitalize().strip()
+        name = name.capitalize().strip()
 
-            # Aqui seria a veficação do email
+        # Aqui seria a veficação do email
 
-            self.cur.execute("INTO TABLE cadastros (nome, email, password) VALUES (?, ?, ?);", (name, email, password))
+        self.cur.execute("INSERT INTO cadastros (name, email, password) VALUES (?, ?, ?);", (name, email, password))
+        self.con.commit()
 
-            return True
-        return False
-    
+
     def resgatar_usuario(self):
         return self.cur.execute("SELECT * FROM cadastro;").fetchall()
     
-    def encerrar_coneccao(self):
+
+    def close(self):
         self.con.close()
+
 
 """
 CREATE TABLE cadastros (
