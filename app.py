@@ -1,11 +1,17 @@
-from flask import render_template, redirect, Flask
+from flask import render_template, redirect, Flask, request
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return redirect("/login")
+    return redirect("/cadastro")
 
-@app.route("/login")
-def login():
-    return render_template("login/index.html")
+@app.route("/cadastro", methods=["POST", "GET"])
+def cadastro():
+    if request.method == "GET":
+        return render_template("cadastro.html")
+    return redirect("/certo")
+
+@app.route("/certo")
+def certo():
+    return render_template("certo.html")
