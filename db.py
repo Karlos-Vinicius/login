@@ -8,13 +8,13 @@ class DataBase():
         self.con = sqlite3.connect("clients.db")
         self.cur = self.con.cursor()
 
-    def cadastrar_pessoa(self, nome, email, senha):
-        if bool(nome) == bool(email) == bool(senha):
-            nome = nome.capitalize().strip()
+    def cadastrar_pessoa(self, name, email, password):
+        if bool(name) == bool(email) == bool(password):
+            name = name.capitalize().strip()
 
             # Aqui seria a veficação do email
 
-            self.cur.execute("INTO TABLE cadastros (nome, email, password) VALUES (?, ?, ?);", nome, email, senha)
+            self.cur.execute("INTO TABLE cadastros (nome, email, password) VALUES (?, ?, ?);", (name, email, password))
 
             return True
         return False
