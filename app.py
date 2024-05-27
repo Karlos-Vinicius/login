@@ -8,4 +8,4 @@ def index():
 
 @app.route("/login")
 def login():
-    return "Hello world!"
+    return render_template("login/index.html")
