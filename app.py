@@ -10,10 +10,10 @@ db = db.DataBase()
 
 @app.route("/")
 def index():
-    return redirect("/singin")
+    return redirect("/signup")
 
-@app.route("/cadastro", methods=["POST", "GET"])
-def cadastro():
+@app.route("/signup", methods=["POST", "GET"])
+def signup():
     if request.method == "POST":
         db.init()
         name = request.form.get("name")
@@ -37,10 +37,10 @@ def cadastro():
 
         return redirect("/certo")
     
-    return render_template("cadastro.html")
+    return render_template("signup.html")
 
 
-@app.route("/singin", methods=["POST", "GET"])
+@app.route("/signin", methods=["POST", "GET"])
 def singin():
     if request.method == "POST":
         db.init()
@@ -57,7 +57,7 @@ def singin():
 
         return redirect("/certo")
 
-    return render_template("login.html")
+    return render_template("signin.html")
 
 
 @app.route("/certo")
